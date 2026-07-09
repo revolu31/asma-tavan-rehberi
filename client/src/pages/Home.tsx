@@ -236,7 +236,23 @@ const TIPS = [
   { icon: "⚖️", title: "Yük Kapasitesi", text: "Standart alçıpan paneller ağır avizeler için yeterli değildir. Avize montajı için çerçeve sistemi güçlendirilmelidir." },
   { icon: "🌡️", title: "Isı Yalıtımı", text: "Asma tavan ile ana tavan arasına cam yünü veya taş yünü yerleştirilerek ısı yalıtımı önemli ölçüde artırılabilir." },
 ];
+const SERVICE_AREAS = [
+  "Antakya",
+  "Defne",
+  "İskenderun",
+  "Arsuz",
+  "Dörtyol",
+  "Kırıkhan",
+  "Reyhanlı",
+  "Samandağ",
+  "Belen",
+  "Payas",
+  "Altınözü",
+  "Yayladağı",
+  "Hassa",
+];
 const FAQS = [
+  
   {
     question: "Asma tavan kaç günde tamamlanır?",
     answer:
@@ -1105,6 +1121,81 @@ export default function Home() {
         </div>
       ))}
     </div>
+  </div>
+</section>
+{/* ── HİZMET BÖLGELERİ ── */}
+<section className="py-20">
+  <div className="container">
+
+    <div className="mb-12">
+      <div className="flex items-center gap-3 mb-3">
+        <div
+          className="h-px w-6"
+          style={{ background: "oklch(0.72 0.12 75)" }}
+        />
+        <span
+          className="text-xs tracking-[0.2em]"
+          style={{
+            color: "oklch(0.72 0.12 75)",
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          HİZMET BÖLGELERİ
+        </span>
+      </div>
+
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          color: "oklch(0.93 0.01 220)",
+        }}
+      >
+        Hatay ve Çevresinde
+        <em
+          style={{
+            color: "oklch(0.72 0.12 75)",
+            fontStyle: "italic",
+          }}
+        >
+          {" "}Hizmet Veriyoruz
+        </em>
+      </h2>
+
+      <p
+        style={{
+          color: "oklch(0.60 0.03 230)",
+        }}
+      >
+        Antakya başta olmak üzere Hatay'ın birçok ilçesinde
+        keşif, uygulama ve bakım hizmeti sunuyoruz.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {SERVICE_AREAS.map((area) => (
+        <div
+          key={area}
+          className="rounded-xl p-4 text-center"
+          style={{
+            background: "oklch(0.20 0.055 240)",
+            border: "1px solid oklch(0.30 0.04 240)",
+          }}
+        >
+          <div className="text-xl mb-2">📍</div>
+
+          <div
+            className="font-semibold"
+            style={{
+              color: "oklch(0.93 0.01 220)",
+            }}
+          >
+            {area}
+          </div>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
       {/* ── FOOTER ── */}
