@@ -212,6 +212,20 @@ const ROOM_DATA = [
   { name: "Koridor", Alçıpan: 65, PVC: 45 },
 ];
 
+/* ─── PRICE CALCULATOR DATA ─────────────────────────────────────────── */
+const MATERIAL_PRICES: Record<string, { min: number; max: number; label: string }> = {
+  alcipan: { min: 280, max: 380, label: "Alçıpan" },
+  pop: { min: 350, max: 450, label: "POP (Alçı)" },
+  pvc: { min: 150, max: 220, label: "PVC" },
+  ahsap: { min: 600, max: 900, label: "Ahşap" },
+};
+
+const INSTALLATION_COSTS: Record<string, { min: number; max: number; label: string }> = {
+  simple: { min: 50, max: 100, label: "Basit (tek katman)" },
+  medium: { min: 100, max: 180, label: "Orta (çok katman)" },
+  complex: { min: 180, max: 300, label: "Karmaşık (geometrik)" },
+};
+
 const TIPS = [
   { icon: "📏", title: "Tavan Yüksekliği", text: "Alçıpan asma tavan için minimum 2.7 m tavan yüksekliği önerilir. Çok katmanlı modeller için en az 3 m gereklidir." },
   { icon: "💧", title: "Nem Kontrolü", text: "Banyo ve mutfaklarda standart alçıpan yerine nem dirençli (yeşil) alçıpan paneller kullanılmalıdır." },
@@ -235,6 +249,182 @@ const priceStyle: Record<string, string> = {
 
 /* ─── MODAL ─────────────────────────────────────────────────────────────── */
 type Model = typeof MODELS[0];
+
+/* ─── PRICE CALCULATOR COMPONENT ─────────────────────────────────────── */
+function PriceCalculator() {
+  const [squareMeters, setSquareMeters] = useState(30);
+  const [material, setMaterial] = useState("alcipan");
+  const [installation, setInstallation] = useState("medium");
+  const [hasLED, setHasLED] = useState(true);
+
+  const materialPrice = MATERIAL_PRICES[material];
+  const installationPrice = INSTALLATION_COSTS[installation];
+
+  const baseCost = (materialPrice.min + materialPrice.max) / 2 * squareMeters;
+  const installCost = (installationPrice.min + installationPrice.max) / 2 * squareMeters;
+  const ledCost = hasLED ? squareMeters * 120 : 0;
+  const totalCost = baseCost + installCost + ledCost;
+
+  const minCost = (materialPrice.min + installationPrice.min) * squareMeters + (hasLED ? squareMeters * 100 : 0);
+  const maxCost = (materialPrice.max + installationPrice.max) * squareMeters + (hasLED ? squareMeters * 150 : 0);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Input Panel */}
+      <motion.div
+        className="rounded-xl p-8"
+        style={{
+          background: "oklch(0.20 0.055 240)",
+          border: "1px solid oklch(0.30 0.04 240)",
+          borderLeft: "4px solid oklch(0.72 0.12 75)",
+        }}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="text-lg font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.93 0.01 220)" }}>
+          Parametrelerinizi Girin
+        </h3>
+
+        {/* Square Meters Slider */}
+        <div className="mb-8">
+          <label className="block text-sm font-semibold mb-3" style={{ color: "oklch(0.80 0.02 220)" }}>
+            Oda Alanı: <span style={{ color: "oklch(0.72 0.12 75)" }}>{squareMeters} m²</span>
+          </label>
+          <input
+            type="range"
+            min="10"
+            max="200"
+            value={squareMeters}
+            onChange={(e) => setSquareMeters(Number(e.target.value))}
+            className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+            style={{
+              background: "linear-gradient(to right, oklch(0.72 0.12 75) 0%, oklch(0.72 0.12 75) " + ((squareMeters - 10) / 190 * 100) + "%, oklch(0.30 0.04 240) " + ((squareMeters - 10) / 190 * 100) + "%, oklch(0.30 0.04 240) 100%)",
+            }}
+          />
+          <div className="flex justify-between text-xs mt-2" style={{ color: "oklch(0.50 0.03 230)" }}>
+            <span>10 m²</span>
+            <span>200 m²</span>
+          </div>
+        </div>
+
+        {/* Material Selection */}
+        <div className="mb-8">
+          <label className="block text-sm font-semibold mb-3" style={{ color: "oklch(0.80 0.02 220)" }}>
+            Malzeme Seçimi
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {Object.entries(MATERIAL_PRICES).map(([key, val]) => (
+              <button
+                key={key}
+                onClick={() => setMaterial(key)}
+                className="px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200"
+                style={{
+                  background: material === key ? "oklch(0.72 0.12 75)" : "oklch(0.26 0.05 240)",
+                  color: material === key ? "oklch(0.14 0.05 240)" : "oklch(0.80 0.02 220)",
+                  border: material === key ? "none" : "1px solid oklch(0.30 0.04 240)",
+                }}
+              >
+                {val.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Installation Type */}
+        <div className="mb-8">
+          <label className="block text-sm font-semibold mb-3" style={{ color: "oklch(0.80 0.02 220)" }}>
+            Kurulum Tipi
+          </label>
+          <div className="space-y-2">
+            {Object.entries(INSTALLATION_COSTS).map(([key, val]) => (
+              <button
+                key={key}
+                onClick={() => setInstallation(key)}
+                className="w-full px-4 py-2 rounded-lg text-xs font-medium text-left transition-all duration-200 flex items-center gap-2"
+                style={{
+                  background: installation === key ? "oklch(0.72 0.12 75)" : "oklch(0.26 0.05 240)",
+                  color: installation === key ? "oklch(0.14 0.05 240)" : "oklch(0.80 0.02 220)",
+                  border: installation === key ? "none" : "1px solid oklch(0.30 0.04 240)",
+                }}
+              >
+                <input type="radio" checked={installation === key} readOnly className="w-3 h-3" />
+                {val.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* LED Option */}
+        <div className="flex items-center gap-3 p-3 rounded-lg" style={{ background: "oklch(0.26 0.05 240)" }}>
+          <input
+            type="checkbox"
+            checked={hasLED}
+            onChange={(e) => setHasLED(e.target.checked)}
+            className="w-4 h-4 cursor-pointer"
+          />
+          <label className="text-sm cursor-pointer flex-1" style={{ color: "oklch(0.80 0.02 220)" }}>
+            Gizli LED Aydınlatma Ekle
+            <span className="block text-xs" style={{ color: "oklch(0.60 0.03 230)" }}>+120 ₺/m² (tahmini)</span>
+          </label>
+        </div>
+      </motion.div>
+
+      {/* Result Panel */}
+      <motion.div
+        className="rounded-xl p-8"
+        style={{
+          background: "linear-gradient(135deg, oklch(0.20 0.055 240) 0%, oklch(0.22 0.06 240) 100%)",
+          border: "2px solid oklch(0.72 0.12 75 / 0.4)",
+        }}
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+      >
+        <h3 className="text-lg font-bold mb-8" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.93 0.01 220)" }}>
+          Tahmini Maliyet Analizi
+        </h3>
+
+        {/* Cost Breakdown */}
+        <div className="space-y-4 mb-8">
+          <div className="flex justify-between items-center pb-3" style={{ borderBottom: "1px solid oklch(0.30 0.04 240)" }}>
+            <span className="text-sm" style={{ color: "oklch(0.70 0.03 230)" }}>Malzeme Maliyeti</span>
+            <span className="font-semibold" style={{ color: "oklch(0.93 0.01 220)" }}>₺{baseCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}</span>
+          </div>
+          <div className="flex justify-between items-center pb-3" style={{ borderBottom: "1px solid oklch(0.30 0.04 240)" }}>
+            <span className="text-sm" style={{ color: "oklch(0.70 0.03 230)" }}>Kurulum Ücreti</span>
+            <span className="font-semibold" style={{ color: "oklch(0.93 0.01 220)" }}>₺{installCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}</span>
+          </div>
+          {hasLED && (
+            <div className="flex justify-between items-center pb-3" style={{ borderBottom: "1px solid oklch(0.30 0.04 240)" }}>
+              <span className="text-sm" style={{ color: "oklch(0.70 0.03 230)" }}>LED Aydınlatma</span>
+              <span className="font-semibold" style={{ color: "oklch(0.72 0.12 75)" }}>₺{ledCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Total Cost */}
+        <div className="rounded-lg p-4 mb-6" style={{ background: "oklch(0.72 0.12 75 / 0.15)", border: "1px solid oklch(0.72 0.12 75 / 0.3)" }}>
+          <p className="text-xs mb-1" style={{ color: "oklch(0.70 0.03 230)" }}>Toplam Tahmini Maliyet</p>
+          <p className="text-3xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.72 0.12 75)" }}>
+            ₺{totalCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}
+          </p>
+        </div>
+
+        {/* Range */}
+        <div className="rounded-lg p-4" style={{ background: "oklch(0.26 0.05 240)" }}>
+          <p className="text-xs mb-2" style={{ color: "oklch(0.70 0.03 230)" }}>Fiyat Aralığı (min-max)</p>
+          <p className="text-sm font-semibold" style={{ color: "oklch(0.80 0.02 220)" }}>
+            ₺{minCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })} — ₺{maxCost.toLocaleString('tr-TR', { maximumFractionDigits: 0 })}
+          </p>
+          <p className="text-xs mt-3" style={{ color: "oklch(0.50 0.03 230)" }}>
+            ⓘ Fiyatlar bölgeye, uygulamaya ve pazar koşullarına göre değişiklik gösterebilir. Kesin fiyat için uzman danışmanla iletişime geçiniz.
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 function ModelModal({ model, onClose }: { model: Model; onClose: () => void }) {
   useEffect(() => {
@@ -416,7 +606,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:flex gap-6 text-xs tracking-wider" style={{ color: "oklch(0.70 0.03 230)", fontFamily: "'Inter', sans-serif" }}>
-            {[["#istatistikler","İSTATİSTİKLER"],["#modeller","MODELLER"],["#karsilastirma","KARŞILAŞTIRMA"],["#grafikler","GRAFİKLER"],["#ipuclari","İPUÇLARI"]].map(([href, label]) => (
+            {[["#istatistikler","İSTATİSTİKLER"],["#modeller","MODELLER"],["#karsilastirma","KARŞILAŞTIRMA"],["#grafikler","GRAFİKLER"],["#hesaplayici","HESAPLAYICI"],["#ipuclari","İPUÇLARI"]].map(([href, label]) => (
               <a key={href} href={href} className="hover:text-amber-400 transition-colors">{label}</a>
             ))}
           </div>
@@ -750,6 +940,29 @@ export default function Home() {
               </ResponsiveContainer>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── PRICE CALCULATOR ── */}
+      <section id="hesaplayici" className="py-20" style={{ background: "oklch(0.17 0.055 240)" }}>
+        <div className="container">
+          <div className="mb-12">
+            <div className="flex items-end justify-between gap-4 mb-4">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="h-px w-6" style={{ background: "oklch(0.72 0.12 75)" }} />
+                  <span className="text-xs tracking-[0.2em]" style={{ color: "oklch(0.72 0.12 75)", fontFamily: "'Inter', sans-serif" }}>MALİYET TAHMINI</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.93 0.01 220)" }}>
+                  Fiyat <em style={{ color: "oklch(0.72 0.12 75)", fontStyle: "italic" }}>Hesaplayıcı</em>
+                </h2>
+              </div>
+              <p className="hidden md:block text-xs text-right pb-1" style={{ color: "oklch(0.50 0.03 230)", fontFamily: "'Inter', sans-serif" }}>Oda boyutunuza göre<br />tahmini maliyet hesaplayın</p>
+            </div>
+            <div className="h-px" style={{ background: "linear-gradient(90deg, oklch(0.72 0.12 75), transparent)" }} />
+          </div>
+
+          <PriceCalculator />
         </div>
       </section>
 
