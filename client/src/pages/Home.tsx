@@ -1319,6 +1319,89 @@ Detaylı teklif almak istiyorum.`;
 
   </div>
 </section>
+{/* ── FİRMA KARTI ── */}
+<section className="py-16">
+  <div className="container">
+
+    <div
+      className="rounded-2xl p-8"
+      style={{
+        background: "oklch(0.20 0.055 240)",
+        border: "1px solid oklch(0.30 0.04 240)",
+      }}
+    >
+      <div className="grid md:grid-cols-2 gap-8">
+
+        <div>
+          <div
+            className="text-sm tracking-[0.2em] mb-3"
+            style={{
+              color: "oklch(0.72 0.12 75)",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            FİRMA PROFİLİ
+          </div>
+
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-4"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              color: "oklch(0.93 0.01 220)",
+            }}
+          >
+            ORNİTORENK YAPI
+          </h2>
+
+          <p
+            style={{
+              color: "oklch(0.60 0.03 230)",
+              lineHeight: "1.8",
+            }}
+          >
+            Hatay ve çevresinde asma tavan, alçıpan sistemleri,
+            anahtar teslim prefabrik yapılar ve dekorasyon
+            uygulamaları alanında hizmet vermekteyiz.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            📍 Hatay
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            📞 0544 426 54 07
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            💬 WhatsApp Destek
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            🏠 Asma Tavan Sistemleri
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            🧱 Alçıpan Uygulamaları
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            🏗️ Prefabrik Yapılar
+          </div>
+
+          <div style={{ color: "oklch(0.80 0.02 220)" }}>
+            🔨 Tadilat & Dekorasyon
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 {/* ── TEKLİF FORMU ── */}
 <section className="py-20" style={{ background: "oklch(0.17 0.055 240)" }}>
   <div className="container">
