@@ -611,6 +611,27 @@ export default function Home() {
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [formName, setFormName] = useState("");
+const [formPhone, setFormPhone] = useState("");
+const [formArea, setFormArea] = useState("");
+const [formMessage, setFormMessage] = useState("");
+const sendOfferForm = () => {
+  const message = `Merhaba.
+
+Teklif formundan geldim.
+
+Ad Soyad: ${formName}
+Telefon: ${formPhone}
+Metrekare: ${formArea} m²
+Mesaj: ${formMessage}
+
+Detaylı teklif almak istiyorum.`;
+
+  window.open(
+    `https://wa.me/905444265407?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -1196,6 +1217,72 @@ export default function Home() {
       ))}
     </div>
 
+  </div>
+</section>
+{/* ── TEKLİF FORMU ── */}
+<section className="py-20" style={{ background: "oklch(0.17 0.055 240)" }}>
+  <div className="container">
+    <div className="mb-12">
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          color: "oklch(0.93 0.01 220)",
+        }}
+      >
+        Teklif Formu
+      </h2>
+      <p style={{ color: "oklch(0.60 0.03 230)" }}>
+        Bilgilerinizi bırakın, size en kısa sürede dönüş yapalım.
+      </p>
+    </div>
+
+    <div
+      className="rounded-2xl p-8 max-w-3xl"
+      style={{
+        background: "oklch(0.20 0.055 240)",
+        border: "1px solid oklch(0.30 0.04 240)",
+      }}
+    >
+      <div className="grid md:grid-cols-2 gap-4 mb-4">
+        <input
+          value={formName}
+          onChange={(e) => setFormName(e.target.value)}
+          placeholder="Ad Soyad"
+          className="rounded-lg p-4 outline-none"
+        />
+
+        <input
+          value={formPhone}
+          onChange={(e) => setFormPhone(e.target.value)}
+          placeholder="Telefon"
+          className="rounded-lg p-4 outline-none"
+        />
+      </div>
+
+      <input
+        value={formArea}
+        onChange={(e) => setFormArea(e.target.value)}
+        placeholder="Yaklaşık metrekare"
+        className="rounded-lg p-4 outline-none w-full mb-4"
+      />
+
+      <textarea
+        value={formMessage}
+        onChange={(e) => setFormMessage(e.target.value)}
+        placeholder="Kısa mesajınız"
+        rows={5}
+        className="rounded-lg p-4 outline-none w-full mb-6"
+      />
+
+      <button
+        onClick={sendOfferForm}
+        className="w-full py-4 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105"
+        style={{ background: "#25D366" }}
+      >
+        💬 WhatsApp ile Teklif Gönder
+      </button>
+    </div>
   </div>
 </section>
       {/* ── FOOTER ── */}
