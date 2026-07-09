@@ -675,7 +675,7 @@ Detaylı teklif almak istiyorum.`;
             </div>
           </div>
           <div className="hidden md:flex gap-6 text-xs tracking-wider" style={{ color: "oklch(0.70 0.03 230)", fontFamily: "'Inter', sans-serif" }}>
-            {[["#istatistikler","İSTATİSTİKLER"],["#modeller","MODELLER"],["#karsilastirma","KARŞILAŞTIRMA"],["#grafikler","GRAFİKLER"],["#hesaplayici","HESAPLAYICI"],["#ipuclari","İPUÇLARI"]].map(([href, label]) => (
+            {[["#hizmetler","HİZMETLER"],["#istatistikler","İSTATİSTİKLER"],["#modeller","MODELLER"],["#karsilastirma","KARŞILAŞTIRMA"],["#grafikler","GRAFİKLER"],["#hesaplayici","HESAPLAYICI"],["#ipuclari","İPUÇLARI"]].map(([href, label]) => (
               <a key={href} href={href} className="hover:text-amber-400 transition-colors">{label}</a>
             ))}
           </div>
@@ -777,6 +777,106 @@ Detaylı teklif almak istiyorum.`;
         {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: "linear-gradient(to bottom, transparent, oklch(0.14 0.05 240))" }} />
       </section>
+      {/* ── HİZMETLERİMİZ ── */}
+<section id="hizmetler" className="py-20 relative z-10" style={{ background: "oklch(0.14 0.05 240)" }}>  <div className="container">
+
+    <div className="mb-12">
+      <div className="flex items-center gap-3 mb-3">
+        <div
+          className="h-px w-6"
+          style={{ background: "oklch(0.72 0.12 75)" }}
+        />
+        <span
+          className="text-xs tracking-[0.2em]"
+          style={{
+            color: "oklch(0.72 0.12 75)",
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          HİZMETLERİMİZ
+        </span>
+      </div>
+
+      <h2
+        className="text-3xl md:text-4xl font-bold"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          color: "oklch(0.93 0.01 220)",
+        }}
+      >
+        Yapı ve Dekorasyon
+        <em
+          style={{
+            color: "oklch(0.72 0.12 75)",
+            fontStyle: "italic",
+          }}
+        >
+          {" "}Çözümlerimiz
+        </em>
+      </h2>
+    </div>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div className="rounded-xl p-6"
+        style={{
+          background: "oklch(0.20 0.055 240)",
+          border: "1px solid oklch(0.30 0.04 240)",
+        }}>
+        <div className="text-3xl mb-3">🏠</div>
+        <h3 className="font-bold mb-2" style={{ color: "oklch(0.93 0.01 220)" }}>
+          Asma Tavan
+        </h3>
+        <p style={{ color: "oklch(0.60 0.03 230)" }}>
+          Alçıpan, LED, metal ve dekoratif asma tavan uygulamaları.
+        </p>
+      </div>
+
+      <div className="rounded-xl p-6"
+        style={{
+          background: "oklch(0.20 0.055 240)",
+          border: "1px solid oklch(0.30 0.04 240)",
+        }}>
+        <div className="text-3xl mb-3">🧱</div>
+        <h3 className="font-bold mb-2" style={{ color: "oklch(0.93 0.01 220)" }}>
+          Alçıpan Sistemleri
+        </h3>
+        <p style={{ color: "oklch(0.60 0.03 230)" }}>
+          Bölme duvar, niş, TV ünitesi ve dekoratif alçıpan çözümleri.
+        </p>
+      </div>
+
+      <div className="rounded-xl p-6"
+        style={{
+          background: "oklch(0.20 0.055 240)",
+          border: "1px solid oklch(0.30 0.04 240)",
+        }}>
+        <div className="text-3xl mb-3">🏗️</div>
+        <h3 className="font-bold mb-2" style={{ color: "oklch(0.93 0.01 220)" }}>
+          Prefabrik Yapılar
+        </h3>
+        <p style={{ color: "oklch(0.60 0.03 230)" }}>
+          Anahtar teslim prefabrik ev, ofis ve şantiye yapıları.
+        </p>
+      </div>
+
+      <div className="rounded-xl p-6"
+        style={{
+          background: "oklch(0.20 0.055 240)",
+          border: "1px solid oklch(0.30 0.04 240)",
+        }}>
+        <div className="text-3xl mb-3">🔨</div>
+        <h3 className="font-bold mb-2" style={{ color: "oklch(0.93 0.01 220)" }}>
+          Tadilat & Dekorasyon
+        </h3>
+        <p style={{ color: "oklch(0.60 0.03 230)" }}>
+          Ev, ofis ve iş yerleri için komple yenileme ve dekorasyon hizmetleri.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ── STATS ── */}
       <section id="istatistikler" className="py-20">
