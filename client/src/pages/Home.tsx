@@ -236,7 +236,38 @@ const TIPS = [
   { icon: "⚖️", title: "Yük Kapasitesi", text: "Standart alçıpan paneller ağır avizeler için yeterli değildir. Avize montajı için çerçeve sistemi güçlendirilmelidir." },
   { icon: "🌡️", title: "Isı Yalıtımı", text: "Asma tavan ile ana tavan arasına cam yünü veya taş yünü yerleştirilerek ısı yalıtımı önemli ölçüde artırılabilir." },
 ];
-
+const FAQS = [
+  {
+    question: "Asma tavan kaç günde tamamlanır?",
+    answer:
+      "Projenin büyüklüğüne göre değişmekle birlikte konut uygulamaları genellikle 1-3 gün içerisinde tamamlanmaktadır.",
+  },
+  {
+    question: "Ücretsiz keşif yapıyor musunuz?",
+    answer:
+      "Evet. Uygulama öncesinde ücretsiz keşif yaparak en uygun çözümü ve fiyat teklifini sunuyoruz.",
+  },
+  {
+    question: "LED aydınlatma sonradan eklenebilir mi?",
+    answer:
+      "Çoğu asma tavan sisteminde sonradan LED aydınlatma entegrasyonu mümkündür.",
+  },
+  {
+    question: "Garanti veriyor musunuz?",
+    answer:
+      "Kullanılan malzemeye ve uygulama kapsamına göre garanti desteği sunulmaktadır.",
+  },
+  {
+    question: "Fiyatlar nasıl hesaplanıyor?",
+    answer:
+      "Metrekare, malzeme seçimi, işçilik ve aydınlatma tercihine göre hesaplanmaktadır.",
+  },
+  {
+    question: "Hangi bölgelere hizmet veriyorsunuz?",
+    answer:
+      "Hatay ve çevre ilçelerde hizmet vermekteyiz.",
+  },
+];
 const CHART_COLORS = ["#c9a84c", "#4a90d9", "#10b981", "#ef4444", "#8b5cf6", "#f59e0b"];
 
 /* ─── BADGE COLORS ─────────────────────────────────────────────────────── */
@@ -563,6 +594,7 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -1011,7 +1043,70 @@ export default function Home() {
           </div>
         </div>
       </section>
+{/* ── FAQ ── */}
+<section className="py-20">
+  <div className="container">
+    <div className="mb-12">
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          color: "oklch(0.93 0.01 220)",
+        }}
+      >
+        Sık Sorulan Sorular
+      </h2>
 
+      <div
+        className="h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, oklch(0.72 0.12 75), transparent)",
+        }}
+      />
+    </div>
+
+    <div className="space-y-4">
+      {FAQS.map((faq, index) => (
+        <div
+          key={index}
+          className="rounded-xl p-5 cursor-pointer"
+          style={{
+            background: "oklch(0.20 0.055 240)",
+            border: "1px solid oklch(0.30 0.04 240)",
+          }}
+          onClick={() =>
+            setOpenFaq(openFaq === index ? null : index)
+          }
+        >
+          <div className="flex justify-between items-center">
+            <h3
+              className="font-semibold"
+              style={{ color: "oklch(0.93 0.01 220)" }}
+            >
+              {faq.question}
+            </h3>
+
+            <span
+              style={{ color: "oklch(0.72 0.12 75)" }}
+            >
+              {openFaq === index ? "−" : "+"}
+            </span>
+          </div>
+
+          {openFaq === index && (
+            <p
+              className="mt-4 text-sm leading-7"
+              style={{ color: "oklch(0.60 0.03 230)" }}
+            >
+              {faq.answer}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* ── FOOTER ── */}
       <footer className="py-10 text-center" style={{ background: "oklch(0.12 0.05 240)", borderTop: "1px solid oklch(0.30 0.04 240)" }}>
         <div className="text-lg font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.72 0.12 75)" }}>
