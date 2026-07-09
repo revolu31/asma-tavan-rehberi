@@ -1285,6 +1285,68 @@ Detaylı teklif almak istiyorum.`;
     </div>
   </div>
 </section>
+{/* ── GOOGLE HARİTA ── */}
+<section className="py-20">
+  <div className="container">
+    <div className="mb-12">
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          color: "oklch(0.93 0.01 220)",
+        }}
+      >
+        Konum ve Hizmet Bölgemiz
+      </h2>
+
+      <p style={{ color: "oklch(0.60 0.03 230)" }}>
+        Hatay ve çevre ilçelerde asma tavan, alçıpan ve dekorasyon hizmeti sunuyoruz.
+      </p>
+    </div>
+
+    <div
+      className="rounded-2xl overflow-hidden"
+      style={{
+        border: "1px solid oklch(0.30 0.04 240)",
+        background: "oklch(0.20 0.055 240)",
+      }}
+    >
+      <iframe
+        title="Hatay Harita"
+        src="https://www.google.com/maps?q=Hatay&output=embed"
+        width="100%"
+        height="420"
+        style={{ border: 0 }}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+
+      <div className="p-6 flex flex-wrap gap-4 justify-between items-center">
+        <div>
+          <h3
+            className="text-xl font-bold mb-2"
+            style={{ color: "oklch(0.93 0.01 220)" }}
+          >
+            Hatay Geneli Hizmet
+          </h3>
+          <p style={{ color: "oklch(0.60 0.03 230)" }}>
+            Ücretsiz keşif ve hızlı fiyat teklifi için bizimle iletişime geçin.
+          </p>
+        </div>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Hatay"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105"
+          style={{ background: "#2563EB" }}
+        >
+          📍 Yol Tarifi Al
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
       {/* ── FOOTER ── */}
       <footer className="py-10 text-center" style={{ background: "oklch(0.12 0.05 240)", borderTop: "1px solid oklch(0.30 0.04 240)" }}>
         <div className="text-lg font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: "oklch(0.72 0.12 75)" }}>
