@@ -28,7 +28,7 @@ export default function CompanyProfileSection() {
                   color: "oklch(0.93 0.01 220)",
                 }}
               >
-                ORNİTORENK YAPI
+                HATAY ALFA YAPI
               </h2>
 
               <p

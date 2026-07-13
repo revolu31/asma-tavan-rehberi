@@ -187,19 +187,20 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="mb-8 max-w-xl text-base leading-relaxed"
-            style={{
-              color: "oklch(0.65 0.03 230)",
-              fontFamily: "'Inter', sans-serif",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            Asma tavan, alçıpan sistemleri, anahtar teslim prefabrik yapılar
-            ve komple tadilat hizmetlerinde ücretsiz keşif ve profesyonel
-            uygulama sunuyoruz.
-          </motion.p>
+  className="mb-8 max-w-xl text-base leading-relaxed"
+  style={{
+    color: "oklch(0.65 0.03 230)",
+    fontFamily: "'Inter', sans-serif",
+  }}
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3 }}
+>
+  ALFA YAPI olarak prefabrik yapılar, asma tavan sistemleri,
+  alçıpan uygulamaları ve dekorasyon projelerinde anahtar teslim
+  çözümler sunuyoruz. Ücretsiz keşif, kaliteli işçilik ve zamanında
+  teslimat anlayışıyla Hatay ve çevresinde hizmet veriyoruz.
+</motion.p>
 
           <motion.div
             className="mb-8 flex flex-wrap gap-2"

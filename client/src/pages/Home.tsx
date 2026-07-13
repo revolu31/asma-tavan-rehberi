@@ -10,6 +10,7 @@ import NavbarSection from "@/components/home/NavbarSection";
 import HeroSection from "@/components/home/HeroSection";
 import PriceCalculatorSection from "@/components/home/PriceCalculatorSection";
 import ModelGallerySection from "@/components/home/ModelGallerySection";
+import InspirationGallerySection from "@/components/home/InspirationGallerySection";
 import ChartsSection from "@/components/home/ChartsSection";
 import ComparisonSection from "@/components/home/ComparisonSection";
 import StatsSection from "@/components/home/StatsSection";
@@ -36,6 +37,7 @@ export default function Home() {
 <ServicesSection />
 <StatsSection />
 <ModelGallerySection />
+<InspirationGallerySection />
 <ComparisonSection />
 <ChartsSection />
 <PriceCalculatorSection />

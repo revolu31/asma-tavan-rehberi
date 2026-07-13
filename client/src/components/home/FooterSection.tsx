@@ -17,7 +17,7 @@ export default function FooterSection() {
                 fontFamily: "'Playfair Display', serif",
               }}
             >
-              ORNİTORENK YAPI
+              HATAY ALFA YAPI
             </h3>
 
             <p
@@ -100,7 +100,7 @@ export default function FooterSection() {
             color: "oklch(0.50 0.03 230)",
           }}
         >
-          © 2026 ORNİTORENK YAPI • Tüm Hakları Saklıdır.
+          © 2026 HATAY ALFA YAPI • Tüm Hakları Saklıdır.
         </div>
       </div>
     </footer>

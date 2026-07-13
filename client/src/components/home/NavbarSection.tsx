@@ -85,7 +85,7 @@ export default function NavbarSection() {
                 color: "oklch(0.72 0.12 75)",
               }}
             >
-              ORNİTORENK YAPI
+               HATAY ALFA YAPI
             </div>
 
             <div
@@ -95,7 +95,7 @@ export default function NavbarSection() {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              YAPI & DEKORASYON
+              PREFABRİK • ASMA TAVAN • DEKORASYON
             </div>
           </div>
         </a>

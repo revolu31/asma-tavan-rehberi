@@ -174,15 +174,24 @@ Detaylı bilgi alabilir miyim?`;
               </label>
 
               <input
-                type="range"
-                min="10"
-                max="200"
-                value={squareMeters}
-                onChange={(event) =>
-                  setSquareMeters(Number(event.target.value))
-                }
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg"
-              />
+  type="range"
+  min="10"
+  max="200"
+  value={squareMeters}
+  onChange={(event) =>
+    setSquareMeters(Number(event.target.value))
+  }
+  className="h-2 w-full cursor-pointer appearance-none rounded-lg"
+  style={{
+    background: `linear-gradient(
+      to right,
+      oklch(0.72 0.12 75) 0%,
+      oklch(0.72 0.12 75) ${((squareMeters - 10) / 190) * 100}%,
+      oklch(0.30 0.04 240) ${((squareMeters - 10) / 190) * 100}%,
+      oklch(0.30 0.04 240) 100%
+    )`,
+  }}
+/>
 
               <div
                 className="mt-2 flex justify-between text-xs"
